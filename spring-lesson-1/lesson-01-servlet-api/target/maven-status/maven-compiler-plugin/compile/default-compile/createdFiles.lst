@@ -1,0 +1,5 @@
+ru\geekbrains\ProductServlet.class
+ru\geekbrains\FirstServlet.class
+ru\geekbrains\persist\Product.class
+ru\geekbrains\BootstrapListener.class
+ru\geekbrains\persist\ProductRepository.class
