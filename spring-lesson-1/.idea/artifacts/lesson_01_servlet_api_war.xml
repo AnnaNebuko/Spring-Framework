@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" external-system-id="Maven" name="lesson-01-servlet-api:war">
+    <output-path>$PROJECT_DIR$/lesson-01-servlet-api/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>lesson-01-servlet-api</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="servlet-app.war">
+      <element id="artifact" artifact-name="lesson-01-servlet-api:war exploded" />
+    </root>
+  </artifact>
+</component>
