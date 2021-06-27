@@ -12,7 +12,6 @@ public class FirstServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         this.servletConfig = servletConfig;
-        //Параметр servletConfig точка связи сервлета и контейнера приложений
     }
 
     @Override
@@ -22,8 +21,7 @@ public class FirstServlet implements Servlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        servletResponse.getWriter().println("<h1>Hello from Servlet</h1>");
-        //Этот метод будет вызываться, когда приходить HTTP запрос
+        servletResponse.getWriter().println("<h1>Привет от сервлета!!!</h1>");
     }
 
     @Override

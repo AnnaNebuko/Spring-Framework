@@ -2,6 +2,7 @@ package ru.geekbrains;
 
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.persist.ProductRepositoryImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-@WebServlet(urlPatterns = "/product")
+@WebServlet(urlPatterns = "/product/*")
 public class ProductServlet extends HttpServlet {
 
+    private static final Pattern pathParam = Pattern.compile("\\/(\\d*)$");
     private ProductRepository productRepository;
 
     @Override
@@ -24,10 +28,10 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            List<Product> products = productRepository.findAll();
+        PrintWriter wr = resp.getWriter();
 
-            PrintWriter wr = resp.getWriter();
+        if (req.getPathInfo() == null || req.getPathInfo().equals("") || req.getPathInfo().equals("/")) {
+            List<Product> products = productRepository.findAll();
 
             wr.println("<table>");
             wr.println("<tr>");
@@ -38,14 +42,31 @@ public class ProductServlet extends HttpServlet {
 
             for (Product pr : products) {
                 wr.println("<tr>");
-                wr.println("<td>" + pr.getId() + "</td>");
-                wr.println("<td>" + pr.getName() + "</td>");
+                wr.println("<td><a href='" + getServletContext().getContextPath() + "/product/" + pr.getId() + "'>" + pr.getId() + "</a></td>");
+                wr.println("<td>" + pr.getName() + "</a>" + "</td>");
                 wr.println("<td>" + pr.getCost() + "</td>");
+
                 wr.println("</tr>");
             }
             resp.getWriter().println("</table>");
-        } catch (NullPointerException e) {
-            resp.getWriter().println("</tr>");
+        } else {
+            Matcher matcher = pathParam.matcher(req.getPathInfo());
+            if (matcher.matches()) {
+                long id;
+                try {
+                    id = Long.parseLong(matcher.group(1));
+                } catch (NumberFormatException ex) {
+                    resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    return;
+                }
+                Product product = productRepository.findById(id);
+                resp.getWriter().println("<p>Product info</p>");
+                resp.getWriter().println("<p>Id: " + product.getId() + "</p>");
+                resp.getWriter().println("<p>Name: " + product.getName() + "</p>");
+                return;
+            }
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 }
+
