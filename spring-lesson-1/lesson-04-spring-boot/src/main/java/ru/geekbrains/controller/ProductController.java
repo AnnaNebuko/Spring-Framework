@@ -3,15 +3,18 @@ package ru.geekbrains.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.persist.ProductSpecifications;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
@@ -27,10 +30,28 @@ public class ProductController {
     }
 
     @GetMapping
-    public String listPage(Model model) {
-        logger.info("Product list page requested");
+    public String listPage(Model model,
+                           @RequestParam("usernameFilter") Optional<String> usernameFilter,
+                           @RequestParam("minPrice") Optional<Integer> minPrice,
+                           @RequestParam("maxPrice") Optional<Integer> maxPrice,
+                           @RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size) {
+        logger.info("User list page requested");
 
-        model.addAttribute("products", productRepository.findAll());
+        Specification<Product> spec = Specification.where(null);
+        if (usernameFilter.isPresent() && !usernameFilter.get().isBlank()) {
+            spec = spec.and(ProductSpecifications.usernamePrefix(usernameFilter.get()));
+        }
+        if (minPrice.isPresent()) {
+            spec = spec.and(ProductSpecifications.minPrice(minPrice.get()));
+        }
+        if (maxPrice.isPresent()) {
+            spec = spec.and(ProductSpecifications.maxPrice(maxPrice.get()));
+        }
+
+        model.addAttribute("products", productRepository.findAll(spec,
+                PageRequest.of(page.orElse(1) - 1, size.orElse(3))));
+
         return "products";
     }
 
@@ -59,6 +80,14 @@ public class ProductController {
         }
 
         productRepository.save(product);
+        return "redirect:/product";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable("id") Long id) {
+        logger.info("Deleting product with id {}", id);
+
+        productRepository.deleteById(id);
         return "redirect:/product";
     }
 }
