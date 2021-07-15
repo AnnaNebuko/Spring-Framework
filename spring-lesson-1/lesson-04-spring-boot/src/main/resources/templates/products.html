@@ -66,19 +66,22 @@
                 <thead>
                 <tr>
                     <th scope="col">Id
-                        <a href="#"><i class="fa fa-sort-down"></i></a>
+                        <a th:href="@{/product(page=${param.page}, size=${products.size}, usernameFilter=${param.usernameFilter},
+                           minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='id')}"><i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Product
-                        <a href="#"><i class="fa fa-sort-down"></i></a>
+                        <a th:href="@{/product(page=${param.page}, size=${products.size}, usernameFilter=${param.usernameFilter},
+                           minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='name')}"><i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Price
-                        <a href="#"><i class="fa fa-sort-down"></i></a>
+                        <a th:href="@{/product(page=${param.page}, size=${products.size}, usernameFilter=${param.usernameFilter},
+                           minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, sortField='price')}"><i class="fa fa-sort-down"></i></a>
                     </th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="product : ${products}">
+                <tr th:if="${products.hasContent()}" th:each="product : ${products.getContent()}">
                     <th scope="row" th:text="${product.id}">1</th>
                     <td th:text="${product.name}">Milk</td>
                     <td th:text="${product.price}">50</td>
@@ -89,8 +92,42 @@
                         </form>
                     </td>
                 </tr>
+
+                <tr th:unless ="${products.hasContent()}">
+                    <td colspan="4">No data</td>
+                </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="col-12">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item"
+                        th:classappend="${!products.hasPrevious()} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/product(page=${prevPageNumber}, size=${products.size}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, username=${param.username})}"
+                           tabindex="-1">Previous</a>
+                    </li>
+
+                    <li th:each="num : ${#numbers.sequence(1, products.totalPages)}"
+                        th:classappend="${num == products.number + 1} ? 'active'"
+                        class="page-item">
+
+                        <a class="page-link"
+                           th:text="${num}"
+                           th:href="@{/product(page=${num}, size=${products.size}, usernameFilter=${param.usernameFilter},
+                           minPrice=${param.minPrice}, maxPrice=${param.maxPrice})}">1</a>
+                    </li>
+
+                    <li class="page-item"
+                        th:classappend="${!products.hasNext()} ? 'disabled'">
+
+                        <a class="page-link"
+                           th:href="@{/product(page=${nextPageNumber}, size=${products.size}, minPrice=${param.minPrice}, maxPrice=${param.maxPrice}, username=${param.username})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

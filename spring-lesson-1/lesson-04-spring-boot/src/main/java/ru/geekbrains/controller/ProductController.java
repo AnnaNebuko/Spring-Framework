@@ -3,7 +3,9 @@ package ru.geekbrains.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +36,10 @@ public class ProductController {
                            @RequestParam("usernameFilter") Optional<String> usernameFilter,
                            @RequestParam("minPrice") Optional<Integer> minPrice,
                            @RequestParam("maxPrice") Optional<Integer> maxPrice,
+                           //Pagination
                            @RequestParam("page") Optional<Integer> page,
-                           @RequestParam("size") Optional<Integer> size) {
+                           @RequestParam("size") Optional<Integer> size,
+                           @RequestParam("sortField") Optional<String> sortField) {
         logger.info("User list page requested");
 
         Specification<Product> spec = Specification.where(null);
@@ -48,9 +52,14 @@ public class ProductController {
         if (maxPrice.isPresent()) {
             spec = spec.and(ProductSpecifications.maxPrice(maxPrice.get()));
         }
+        Page<Product>products = productRepository.findAll(spec,
+                PageRequest.of(page.orElse(1) - 1, size.orElse(5),
+                        Sort.by(sortField.orElse("id"))));
 
-        model.addAttribute("products", productRepository.findAll(spec,
-                PageRequest.of(page.orElse(1) - 1, size.orElse(3))));
+        model.addAttribute("products", products);
+        model.addAttribute("prevPageNumber", products.hasPrevious() ? products.previousPageable().getPageNumber() + 1 : -1);
+        model.addAttribute("nextPageNumber", products.hasNext() ? products.nextPageable().getPageNumber() + 1 : -1);
+
 
         return "products";
     }
