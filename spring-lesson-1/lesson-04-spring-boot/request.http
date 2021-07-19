@@ -1,0 +1,1 @@
+GET http://localhost:8080/spring-mvc-application/api/v1/product/all

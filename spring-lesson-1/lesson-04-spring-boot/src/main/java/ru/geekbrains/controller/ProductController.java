@@ -3,20 +3,13 @@ package ru.geekbrains.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
-import ru.geekbrains.persist.ProductSpecifications;
-
-import java.util.List;
-import java.util.Optional;
+import ru.geekbrains.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
@@ -24,43 +17,19 @@ public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
     public String listPage(Model model,
-                           @RequestParam("usernameFilter") Optional<String> usernameFilter,
-                           @RequestParam("minPrice") Optional<Integer> minPrice,
-                           @RequestParam("maxPrice") Optional<Integer> maxPrice,
-                           //Pagination
-                           @RequestParam("page") Optional<Integer> page,
-                           @RequestParam("size") Optional<Integer> size,
-                           @RequestParam("sortField") Optional<String> sortField) {
+                           ProductListParams productListParams) {
         logger.info("User list page requested");
 
-        Specification<Product> spec = Specification.where(null);
-        if (usernameFilter.isPresent() && !usernameFilter.get().isBlank()) {
-            spec = spec.and(ProductSpecifications.usernamePrefix(usernameFilter.get()));
-        }
-        if (minPrice.isPresent()) {
-            spec = spec.and(ProductSpecifications.minPrice(minPrice.get()));
-        }
-        if (maxPrice.isPresent()) {
-            spec = spec.and(ProductSpecifications.maxPrice(maxPrice.get()));
-        }
-        Page<Product>products = productRepository.findAll(spec,
-                PageRequest.of(page.orElse(1) - 1, size.orElse(5),
-                        Sort.by(sortField.orElse("id"))));
-
-        model.addAttribute("products", products);
-        model.addAttribute("prevPageNumber", products.hasPrevious() ? products.previousPageable().getPageNumber() + 1 : -1);
-        model.addAttribute("nextPageNumber", products.hasNext() ? products.nextPageable().getPageNumber() + 1 : -1);
-
-
+        model.addAttribute("products", productService.findWithFilter(productListParams));
         return "products";
     }
 
@@ -76,7 +45,7 @@ public class ProductController {
     public String editProduct(@PathVariable("id") Long id, Model model) {
         logger.info("Edit page for id {} requested", id);
 
-        model.addAttribute("product", productRepository.findById(id));
+        model.addAttribute("product", productService.findById(id));
         return "product_form";
     }
 
@@ -88,7 +57,7 @@ public class ProductController {
             return "product_form";
         }
 
-        productRepository.save(product);
+        productService.save(product);
         return "redirect:/product";
     }
 
@@ -96,7 +65,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") Long id) {
         logger.info("Deleting product with id {}", id);
 
-        productRepository.deleteById(id);
+        productService.deleteById(id);
         return "redirect:/product";
     }
 }
