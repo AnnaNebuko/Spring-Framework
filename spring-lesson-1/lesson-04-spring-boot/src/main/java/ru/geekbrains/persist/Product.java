@@ -1,16 +1,29 @@
 package ru.geekbrains.persist;
 
-public class Product {
-    private Long id;
-    private String name;
-    private Long cost;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-    public Product(String name) {
+@Entity
+@Table (name = "products")
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String name;
+
+    @Column
+    private Long price;
+
+    public Product(String name, Long cost) {
         this.name = name;
+        this.price = cost;
     }
 
     public Product() {
-
     }
 
     public Long getId() {
@@ -29,11 +42,11 @@ public class Product {
         this.name = name;
     }
 
-    public Long getCost() {
-        return cost;
+    public Long getPrice() {
+        return price;
     }
 
-    public void setCost(Long cost) {
-        this.cost = cost;
+    public void setPrice(Long cost) {
+        this.price = cost;
     }
 }

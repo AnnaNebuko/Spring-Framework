@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
@@ -19,18 +17,19 @@ public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
-    public String listPage(Model model) {
-        logger.info("Product list page requested");
+    public String listPage(Model model,
+                           ProductListParams productListParams) {
+        logger.info("User list page requested");
 
-        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("products", productService.findWithFilter(productListParams));
         return "products";
     }
 
@@ -46,7 +45,7 @@ public class ProductController {
     public String editProduct(@PathVariable("id") Long id, Model model) {
         logger.info("Edit page for id {} requested", id);
 
-        model.addAttribute("product", productRepository.findById(id));
+        model.addAttribute("product", productService.findById(id));
         return "product_form";
     }
 
@@ -58,7 +57,15 @@ public class ProductController {
             return "product_form";
         }
 
-        productRepository.save(product);
+        productService.save(product);
+        return "redirect:/product";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable("id") Long id) {
+        logger.info("Deleting product with id {}", id);
+
+        productService.deleteById(id);
         return "redirect:/product";
     }
 }
