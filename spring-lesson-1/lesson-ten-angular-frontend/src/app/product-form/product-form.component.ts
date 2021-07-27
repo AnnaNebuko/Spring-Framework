@@ -10,7 +10,7 @@ import {Product} from "../model/product";
 })
 export class ProductFormComponent implements OnInit {
 
-  public user = new Product(-1, "", 0);
+  public product = new Product(-1, "", 0);
   public isError:boolean = false;
 
   constructor(private userService: ProductService,
@@ -20,13 +20,13 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(param => {
       if (param.id == 'new') {
-        this.user = new Product(-1, "", 0);
+        this.product = new Product(-1, "", 0);
         return;
       }
       this.userService.findById(param.id)
         .then(res => {
           this.isError = false;
-          this.user = res;
+          this.product = res;
         })
         .catch(err => {
           console.error(err);
@@ -36,7 +36,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   public save() {
-    this.userService.save(this.user)
+    this.userService.save(this.product)
       .then(() => {
         this.isError = false;
         this.router.navigateByUrl('/product');
