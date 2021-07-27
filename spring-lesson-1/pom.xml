@@ -14,9 +14,10 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <modules>
+        <module>lesson-04-spring-boot</module>
         <module>lesson-01-servlet-api</module>
-        <module>lesson-02-spring-basics</module>
         <module>lesson-03-mvc</module>
+        <module>lesson-hibernate</module>
     </modules>
 
 </project>

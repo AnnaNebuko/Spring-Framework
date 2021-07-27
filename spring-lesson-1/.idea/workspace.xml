@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a53406ca-297d-4457-8cba-a4e6a36fde96" name="Default Changelist" comment="Updated">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy-spring-boot-app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-spring-boot-app.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/request.http" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/request.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/java/ru/geekbrains/Lesson04SpringBootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/java/ru/geekbrains/Lesson04SpringBootApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/product_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/product_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/main/resources/templates/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-04-spring-boot/src/test/java/ru/geekbrains/Lesson04SpringBootApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-04-spring-boot/src/test/java/ru/geekbrains/Lesson04SpringBootApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,7 +47,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../spring-part-one-15" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Spring/spring-lesson-1" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -58,7 +65,7 @@
       <recent name="D:\JAVA\Spring\spring-lesson-1\lesson-03-mvc\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.spring boot clean install">
+  <component name="RunManager" selected="JUnit.Lesson04SpringBootApplicationTests">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.geekbrains.Main" />
       <module name="lesson-01-servlet-api" />
@@ -85,12 +92,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lesson04SpringBootApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lesson-04-spring-boot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.geekbrains" />
+      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.Lesson04SpringBootApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -122,15 +146,25 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="Lesson04SpringBootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="lesson-04-spring-boot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.geekbrains.Lesson04SpringBootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
       <item itemvalue="Maven.spring boot clean install" />
+      <item itemvalue="Spring Boot.Lesson04SpringBootApplication" />
+      <item itemvalue="JUnit.Lesson04SpringBootApplicationTests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.Lesson04SpringBootApplicationTests" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -157,8 +191,17 @@
       <workItem from="1624800568954" duration="1133000" />
       <workItem from="1624801859592" duration="135000" />
       <workItem from="1627372892159" duration="230000" />
-      <workItem from="1627374545486" duration="456000" />
+      <workItem from="1627374545486" duration="1728000" />
+      <workItem from="1627378950311" duration="428000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated">
+      <created>1627375223050</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627375223050</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,5 +218,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
   </component>
 </project>
