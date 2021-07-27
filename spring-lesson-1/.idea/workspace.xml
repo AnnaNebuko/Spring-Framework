@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a53406ca-297d-4457-8cba-a4e6a36fde96" name="Default Changelist" comment="Updated" />
+    <list default="true" id="a53406ca-297d-4457-8cba-a4e6a36fde96" name="Default Changelist" comment="Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy/deploy-spring-boot-app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy-spring-boot-app.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesson-03-mvc/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +40,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lesson-03-mvc/src/main/resources/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../spring-part-one-15" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -49,7 +58,7 @@
       <recent name="D:\JAVA\Spring\spring-lesson-1\lesson-03-mvc\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.spring mvc clean install">
+  <component name="RunManager" selected="Maven.spring boot clean install">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.geekbrains.Main" />
       <module name="lesson-01-servlet-api" />
@@ -76,7 +85,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="spring mvc clean install" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="spring boot clean install" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -89,7 +109,6 @@
               <list>
                 <option value="clean" />
                 <option value="install" />
-                <option value="tomcat7:redeploy" />
               </list>
             </option>
             <option name="pomFileName" />
@@ -97,7 +116,7 @@
               <map />
             </option>
             <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/lesson-03-mvc" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/lesson-04-spring-boot" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
@@ -106,7 +125,7 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Maven.spring mvc clean install" />
+      <item itemvalue="Maven.spring boot clean install" />
     </list>
     <recent_temporary>
       <list>
@@ -137,6 +156,8 @@
       <workItem from="1624788714432" duration="4542000" />
       <workItem from="1624800568954" duration="1133000" />
       <workItem from="1624801859592" duration="135000" />
+      <workItem from="1627372892159" duration="230000" />
+      <workItem from="1627374545486" duration="456000" />
     </task>
     <servers />
   </component>

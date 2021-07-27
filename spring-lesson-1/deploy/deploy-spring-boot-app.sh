@@ -17,7 +17,7 @@ cd ..
 mvn clean install
 
 mkdir -p /opt/webapp || exit
-cp lesson-04-spring-boot/target/8.jar /opt/webapp/app.jar
+cp lesson-04-spring-boot/target/lesson-04-spring-boot-0.0.1-SNAPSHOT.jar /opt/webapp/app.jar
 
 useradd spring_boot
 chown spring_boot:spring_boot /opt/webapp/app.jar
