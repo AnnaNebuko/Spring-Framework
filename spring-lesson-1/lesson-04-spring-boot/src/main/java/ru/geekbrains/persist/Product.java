@@ -16,6 +16,9 @@ public class Product {
     private String name;
 
     @Column
+    private String description;
+
+    @Column
     private Long price;
 
     public Product(String name, Long cost) {
@@ -24,6 +27,10 @@ public class Product {
     }
 
     public Product() {
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Long getId() {
