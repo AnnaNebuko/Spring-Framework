@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.UserDto;
 import ru.geekbrains.controller.UserListParams;
+import ru.geekbrains.persist.RoleRepository;
 import ru.geekbrains.persist.User;
 import ru.geekbrains.persist.UserRepository;
 import ru.geekbrains.persist.UserSpecifications;
@@ -22,18 +23,22 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-                           PasswordEncoder passwordEncoder) {
+                           RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
-                .map(user -> new UserDto(user.getId(), user.getUsername(), user.getAge()))
+                .map(user -> new UserDto(user.getId(),
+                        user.getUsername(),
+                        user.getAge()))
                 .collect(Collectors.toList());
     }
 
@@ -73,7 +78,10 @@ public class UserServiceImpl implements UserService {
                 userDto.getId(),
                 userDto.getUsername(),
                 passwordEncoder.encode(userDto.getPassword()),
-                userDto.getAge());
+                userDto.getAge(),
+                userDto.getRoles().stream()
+                .map(roleDto -> roleRepository.getOne(roleDto.getId()))
+                .collect(Collectors.toSet()));
         userRepository.save(user);
     }
 
